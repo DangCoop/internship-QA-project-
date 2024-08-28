@@ -2,7 +2,7 @@
 Feature: Reelly Sign In feature tests
 
   Scenario: User want to sign in with correct credentials
-      Given Open Reelly main page
+      Given Open Reelly wellcome page
       When Click Open in Browser
       And Enter email "antonov.resu@gmail.com" and "Internship2024!"
       And Click Continue Button
