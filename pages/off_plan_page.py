@@ -31,7 +31,7 @@ class OffPlanPage(Page):
         self.click(*self.APPLY_FILTER_BUTTON)
 
     # Option 1 - Verify prices at the first page
-    # def verify_price(self):
+    #def verify_price(self):
     #     projects = self.find_elements(By.CSS_SELECTOR,".price-value")
     #     for project in projects:
     #         price_text = project.text.replace("AED", "").replace(",", "").strip()
@@ -70,7 +70,9 @@ class OffPlanPage(Page):
                 )
 
         # Option 3 (must be updated!!!) - Verify prices at the all pages, not knowing how many there are
-        # current_page = 1
+
+        # current_page = int(self.find_element(By.CSS_SELECTOR, "[wized='currentPageProperties']").text)
+        #
         # while True:
         #     try:
         #         # Wait for the prices to be visible on the page before attempting to interact
@@ -89,6 +91,7 @@ class OffPlanPage(Page):
         #                 assert 1200000 <= price <= 2000000, f"Product price {price} is out of range"
         #             else:
         #                 raise ValueError(f"Price text '{price_text}' is not a valid number")
+        #         sleep(8)
         #
         #         next_button = self.wait.until(
         #                       EC.element_to_be_clickable((By.CSS_SELECTOR, ".pagination__button.w-inline-block"))
@@ -96,9 +99,11 @@ class OffPlanPage(Page):
         #         next_page = int(self.find_element(By.CSS_SELECTOR, "[wized='totalPageProperties']").text)
         #
         #         if next_page == current_page:
+        #             print(f'Next page: {next_page}')
+        #             print(f'Current page: {current_page}')
         #             break
         #         else:
-        #             current_page = next_page
+        #             # current_page = next_page
         #             next_button.click()
         #             # Ensure that the next page has loaded and prices are updated
         #             #self.wait.until(
