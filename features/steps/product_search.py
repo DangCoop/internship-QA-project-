@@ -5,6 +5,7 @@ from time import sleep
 
 SEARCH_INPUT = (By.NAME, 'q')
 SEARCH_SUBMIT = (By.NAME, 'btnK')
+SEARCH_SUBMIT_MOBILE = (By.CSS_SELECTOR, "[data-ved='0ahUKEwjI45awubeIAxVwhP0HHZ7bDGQQ4dUDCA4']")
 
 
 @given('Open Google page')
@@ -22,7 +23,10 @@ def input_search(context, search_word):
 
 @when('Click on search icon')
 def click_search_icon(context):
-    context.driver.find_element(*SEARCH_SUBMIT).click()
+    #context.driver.find_element(*SEARCH_SUBMIT).click()
+    search_button = context.driver.find_element(*SEARCH_SUBMIT_MOBILE)
+    context.driver.execute_script("arguments[0].scrollIntoView(true);", search_button)
+    search_button.click()
     sleep(1)
 
 

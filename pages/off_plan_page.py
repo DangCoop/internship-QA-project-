@@ -10,6 +10,7 @@ class OffPlanPage(Page):
     PRICE1_FIELD = (By.CSS_SELECTOR, "[wized='unitPriceFromFilter']")
     PRICE2_FIELD = (By.CSS_SELECTOR, "[wized='unitPriceToFilter']")
     FILTER_BUTTON = (By.CSS_SELECTOR, ".filter-button.w-inline-block")
+    MOBILE_VER_FILTER_BUTTON = (By.CSS_SELECTOR, "div.filter-button")
     APPLY_FILTER_BUTTON = (By.CSS_SELECTOR, ".button-filter.w-button")
 
     def verify_off_plan_page_enter(self):
@@ -21,7 +22,9 @@ class OffPlanPage(Page):
         self.driver.get('https://soft.reelly.io/')
 
     def open_filter(self):
-        self.click(*self.FILTER_BUTTON)
+        #self.click(*self.FILTER_BUTTON)
+        # Change Locator for Mobile Version
+        self.click(*self.MOBILE_VER_FILTER_BUTTON)
 
     def filter_by_price(self, price1, price2):
         self.input_text(price1, *self.PRICE1_FIELD)
@@ -63,6 +66,10 @@ class OffPlanPage(Page):
             # If not the last page, navigate to the next page
             if current_page < total_pages:
                 next_button = self.find_element(By.CSS_SELECTOR, ".pagination__button.w-inline-block")
+                # Scroll element into view for Mobile Version
+                self.driver.execute_script("arguments[0].scrollIntoView(true);", next_button)
+                # Add sleep for mobile version
+                sleep(10)
                 next_button.click()
                 # Ensure the next page has loaded completely
                 self.wait.until(

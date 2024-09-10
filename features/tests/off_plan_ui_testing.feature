@@ -13,4 +13,4 @@ Feature: Off Plan Page UI testing
     And Verify the price in all cards is inside the range (1200000 - 2000000)
     Examples:
       | email                    | password          | price1  | price2  |
-      | "*********" | "**********" | 1200000 | 2000000 |
+      | "antonov.resu@gmail.com" | "Internship2024!" | 1200000 | 2000000 |

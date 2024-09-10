@@ -12,9 +12,21 @@ def browser_init(context, scenario_name):
     """
     :param context: Behave context
     """
+
+    # Mobile emulation
+    # Setup Chrome options for mobile emulation
+    chrome_options = Options()
+    mobile_emulation = {"deviceName": "Nexus 5"}
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+
+    # Initialize Chrome WebDriver with mobile emulation
     driver_path = ChromeDriverManager().install()
     service = Service(driver_path)
-    context.driver = webdriver.Chrome(service=service)
+    context.driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    # driver_path = ChromeDriverManager().install()
+    # service = Service(driver_path)
+    # context.driver = webdriver.Chrome(service=service)
 
     # Command to run tests with Allure & Behave:
     # behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/off_plan_ui_testing.feature
